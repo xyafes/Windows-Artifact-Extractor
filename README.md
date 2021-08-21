@@ -1,6 +1,7 @@
 # Windows-Artifact-Extractor
 **Support**
 Windows 10,8,7 
+
 **Using**
 Firstly download the Extractor folder and move desktop
 ![Screenshot_1](https://user-images.githubusercontent.com/56520646/130312909-033974bc-1251-410d-8b2c-5ac49eb0affc.png)
