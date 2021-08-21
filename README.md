@@ -1,6 +1,6 @@
 # Windows-Artifact-Extractor
 # Support
-Windows 10,8,7 
+Windows 10,8 and kind of 7.
 
 # Using
 Firstly download the Extractor folder and move desktop.
