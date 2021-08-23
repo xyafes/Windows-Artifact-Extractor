@@ -1,6 +1,6 @@
 @echo off
 color B
-echo System Infermation Starting..
+echo System Infermation Extraction Starting..
 mkdir "%userprofile%\Desktop\Extractor\Report"
 %userprofile%\Desktop\Extractor\library\PsInfo -accepteula -s -d > "%userprofile%\Desktop\Extractor\Report\SystemDetails.txt"
 systeminfo > "%userprofile%\Desktop\Extractor\Report\SystemInfo.txt"
@@ -30,9 +30,9 @@ schtasks /query /FO CSV /V > "%userprofile%\Desktop\Extractor\Report\ScheduledTa
 %userprofile%\Desktop\Extractor\library\handle -a -accepteula c > "%userprofile%\Desktop\Extractor\Report\Handles.txt"
 whoami > "%userprofile%\Desktop\Extractor\Report\Hosttname.txt"
 hostname >> "%userprofile%\Desktop\Extractor\Report\Hostname.txt"
-echo System Infermation Ended.
+echo System Infermation Extraction Finished.
 echo.
-echo Network Infermation Starting..
+echo Network Infermation Extraction Starting..
 ipconfig /all > "%userprofile%\Desktop\Extractor\Report\IPConfigInfo.txt"
 netsh int ip show config > "%userprofile%\Desktop\Extractor\Report\IPInterfaceInfo.txt"
 ipconfig /displaydns > "%userprofile%\Desktop\Extractor\Report\DNSInfo.txt"
@@ -47,7 +47,7 @@ net Session > "%userprofile%\Desktop\Extractor\Report\Sessions.txt"
 net share > "%userprofile%\Desktop\Extractor\Report\LocalShares.txt"
 net file > "%userprofile%\Desktop\Extractor\Report\OpenSharedFiles.txt"
 net view > "%userprofile%\Desktop\Extractor\Report\NetView.txt"
-echo Network Infermation Ended.
+echo Network Infermation Extraction Finished.
 echo.
 echo Registry Block Starting..
 REG QUERY HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Windows\ > "%userprofile%\Desktop\Extractor\Report\RegQuery.txt"
@@ -62,7 +62,7 @@ REG SAVE HKEY_USERS\S-1-5-21-492203786-33974307-3094449070-1001_Classes "%userpr
 REG SAVE HKEY_USERS\S-1-5-18 "%userprofile%\Desktop\Extractor\Report\DESKTOP-USER_6.dat" /y
 REG SAVE HKLM\SECURITY "%userprofile%\Desktop\Extractor\Report\SECURITY-DESKTOP.hiv" /y
 REG SAVE HKLM\SAM "%userprofile%\Desktop\Extractor\Report\SAM-DESKTOP.hiv" /y
-echo Registry Block Ended.
+echo Registry Block Extraction Finished.
 echo.
 echo Disk Infermation Starting..
 %userprofile%\Desktop\Extractor\library\ntfsinfo  -accepteula c > "%userprofile%\Desktop\Extractor\Report\NTFSInfo.txt"
@@ -70,7 +70,7 @@ fsutil fsinfo ntfsinfo C: >> "%userprofile%\Desktop\Extractor\Report\NTFSInfo.tx
 fsutil fsinfo volumeinfo C: > "%userprofile%\Desktop\Extractor\Report\VolumeInfo.txt"
 %userprofile%\Desktop\Extractor\library\diskext -accepteula > "%userprofile%\Desktop\Extractor\Report\DiskMounts.txt"
 tree c:\ /f /a > "%userprofile%\Desktop\Extractor\Report\DirectoryInfo.txt"
-echo Disk Infermation Ended.
+echo Disk Infermation Extraction Finished.
 echo.
 echo Evidence Collection Starting..
 "%userprofile%\Desktop\Extractor\library\robocopy.exe" "C:\WINDOWSPrefetch" "%userprofile%\Desktop\Extractor\Report\\Prefetch" /copyall /ZB /TS /r:4 /w:3 /FP /NP /log:"%userprofile%\Desktop\Extractor\Report\PrefetchCopyLog.txt"
@@ -94,7 +94,7 @@ echo Evidence Collection Starting..
 %userprofile%\Desktop\Extractor\library\psloglist.exe -accepteula -s System > "%userprofile%\Desktop\Extractor\Report\SystemLog.csv"
 %userprofile%\Desktop\Extractor\library\psloglist.exe -accepteula -s Security > "%userprofile%\Desktop\Extractor\Report\SecurityLog.csv"
 MOVE /Y "%userprofile%\Desktop\Extractor\library\DumpIt.exe" "%userprofile%\Desktop\Extractor\Report\DumpIt.exe"
-echo Evidence Collection Ended.
+echo Evidence Collection Extraction Finished.
 echo.
 cd "%userprofile%\Desktop"
 cd "Extractor\Report"
@@ -128,6 +128,6 @@ echo Volume Shadow Copies Starting..
 "%userprofile%\Desktop\Extractor\library\robocopy.exe" "C:\VSC_1\Users\Default User" "%userprofile%\Desktop\Extractor\Report\VSC_1\Registry\Default User" NTUSER.DAT /copyall /ZB /TS /r:4 /w:3 /FP /NP /log:"%userprofile%\Desktop\Extractor\Report\Default User_NTUSER_Copy.txt"
 "%userprofile%\Desktop\Extractor\library\robocopy.exe" "C:\VSC_1\Users\%username%" "%userprofile%\Desktop\Extractor\Report\VSC_1\Registry\user" NTUSER.DAT /copyall /ZB /TS /r:4 /w:3 /FP /NP /log:"%userprofile%\Desktop\Extractor\Report\User_NTUSER_Copy.txt"
 "%userprofile%\Desktop\Extractor\library\robocopy.exe" "C:\VSC_1\Users\Public" "%userprofile%\Desktop\Extractor\Report\VSC_1\Registry\Public" NTUSER.DAT /copyall /ZB /TS /r:4 /w:3 /FP /NP /log:"%userprofile%\Desktop\Extractor\Report\Public_NTUSER_Copy.txt"
-echo Volume Shadow Copies Ended.
+echo Volume Shadow Copies Extraction Finished.
 "%userprofile%\Desktop\Extractor\library\7za.exe" a -tzip "%userprofile%\Desktop\Extractor\ReportZip.zip" -r "%userprofile%\Desktop\Extractor\Report" -mx5
 pause
